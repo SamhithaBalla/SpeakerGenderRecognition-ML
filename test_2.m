@@ -1,6 +1,6 @@
 clear all;
 close all;
-PATH = '/Users/nxs162330/Documents/Clean_Speech/Male';
+PATH = '/Users/samhi/Documents/Clean_Speech/Male';
 noiseFiles  = dir(PATH);
 noiseFiles = noiseFiles(~ismember({noiseFiles.name},{'.' '..' '.DS_Store'}));
 nNoiseFiles  = numel(noiseFiles);
@@ -50,5 +50,5 @@ for num = 13%1:nNoiseFiles
 %         output = cat(1,output,final);
 %     end
 end
-filename_write = strcat('/Users/nxs162330/Documents/Clean_Speech/M_test_', num2str(num),'.mat');
+filename_write = strcat('/Users/samhi/Documents/Clean_Speech/M_test_', num2str(num),'.mat');
 save(filename_write,'output','-v7.3');
