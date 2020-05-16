@@ -22,8 +22,8 @@ import glob, os
 # In[ ]:
 
 
-set_M = h5py.File('/Users/nxs162330/Documents/Clean_Speech/M_2710.mat')
-set_F = h5py.File('/Users/nxs162330/Documents/Clean_Speech/F_2813.mat')
+set_M = h5py.File('C:\Users\samhi\OneDrive\Desktop\ML\Update\M_2710.mat')
+set_F = h5py.File('C:\Users\samhi\OneDrive\Desktop\ML\Update\F_2813.mat')
 
 
 # In[ ]:
@@ -276,7 +276,7 @@ print(size_train)
 # In[ ]:
 
 
-checkpoint_dir = "/Users/nxs162330/Documents/Clean_Speech/full_model/"
+checkpoint_dir = "C:\Users\samhi\OneDrive\Desktop\ML\Update\"
 tf.gfile.MakeDirs(checkpoint_dir)
 
 learningRates = np.hstack((1e-3*np.ones(10),
