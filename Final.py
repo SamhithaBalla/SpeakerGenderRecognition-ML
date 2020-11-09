@@ -14,8 +14,8 @@ dataset_F =  np.transpose(set_F['output'].value, axes=(1,0))
 
 dataset = np.r_[dataset_M, dataset_F]
 
-labels_M = np.zeros((len(dataset_M),1), dtype=int)
-labels_F = np.ones((len(dataset_F),1), dtype=int)
+labels_M = np.zeros((len(dataset_M),1), dtype=int) # set lable 0 for male
+labels_F = np.ones((len(dataset_F),1), dtype=int) # set label 1 for female
 
 data = dataset.reshape(len(dataset),27,1)
 labels = np.r_[labels_M, labels_F]
@@ -24,6 +24,9 @@ print("Data Shape ", data.shape)
 print("Labels Shape ", labels.shape)
 
 len_x   = int(len(data))
+
+# split into 90 : 10 train-test split
+
 len_train = int(len_x*0.9)
 
 len_test  = int(len_x*0.1)
@@ -48,20 +51,27 @@ print("Train_Labels Shape ", frame_y_train.shape)
 print("Test_Data Shape ", frame_x_test.shape)
 print("Test_Labels Shape ", frame_y_test.shape)
 
+# defining softmax
+
 def softmax( x):
     p = np.exp(x- np.max(x))
     return p / np.sum(p)
 
 learn_rate = 0.01  
-hidden_size = 64
-input_size = 27
-output_size = 2
+hidden_size = 64 #no.of nodes in hidden layer
+input_size = 27 #no. of input features
+output_size = 2 # either 0 or 1
+
+#initialize weights and bias
+
 Whh = randn(hidden_size, hidden_size) / 1000
 Wxh = randn(hidden_size, input_size) / 1000
 Why = randn(output_size, hidden_size) / 1000
 bh = np.zeros((hidden_size, 1))
 by = np.zeros((output_size, 1))
 inputs = frame_x_train
+
+#training - forward and backward pass
 
 loss = 0
 num_correct = 0
@@ -98,5 +108,6 @@ for i, x in enumerate(inputs):
     Why -= learn_rate * d_Why
     bh -= learn_rate * d_bh
     by -= learn_rate * d_by
+    
 print(loss/len_train)
 print(num_correct/len_train)
