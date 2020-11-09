@@ -80,6 +80,7 @@ for i, x in enumerate(inputs):
     h = np.zeros((Whh.shape[0], 1))
     last_hs = { 0: h }
     target = frame_y_train[i]
+    #activation function - tanh
     h = np.tanh(Wxh @ x + Whh @ h + bh)
     last_hs[1] = h
     y = Why @ h + by
